@@ -7,11 +7,17 @@ import {
 } from "lucide-react";
 
 /* ─── Data ────────────────────────────────────────────────────────────── */
-const secretariat = [
-  { badge: "SG",  name: "Omar Sebaey",     title: "Secretary-General"        },
-  { badge: "DSG", name: "Lea Chaaban",     title: "Deputy Secretary-General"  },
-  { badge: "SA",  name: "Joumana Mohamed", title: "Senior Advisor"            },
-  { badge: "SA",  name: "Joe Feghaly",     title: "Senior Advisor"            },
+const sg = [
+  { badge: "SG", name: "Omar Sebaey", title: "Secretary-General" },
+];
+
+const dsg = [
+  { badge: "DSG", name: "Lea Chaaban", title: "Deputy Secretary-General" },
+];
+
+const seniorAdvisors = [
+  { badge: "SA", name: "Joumana Mohamed", title: "Senior Advisor" },
+  { badge: "SA", name: "Joe Feghaly",     title: "Senior Advisor" },
 ];
 
 const departments = [
@@ -199,19 +205,46 @@ export default function ExecutiveBoard() {
           <div className="w-16 h-[1px] bg-[#E2C799] mx-auto mt-4 opacity-55" />
         </div>
 
-        {/* ── Secretariat ── */}
-        <div className="mb-12">
+        {/* ── Secretary-General ── */}
+        <div className="mb-10">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-2 rounded bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] shrink-0">
               <Shield className="w-5 h-5 stroke-[1.5]" />
             </div>
             <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide shrink-0">
-              Secretariat
+              Secretary-General
             </h3>
             <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
           </div>
+          <MembersRow members={sg} />
+        </div>
 
-          <MembersRow members={secretariat} />
+        {/* ── Deputy Secretary-General ── */}
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] shrink-0">
+              <Award className="w-5 h-5 stroke-[1.5]" />
+            </div>
+            <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide shrink-0">
+              Deputy Secretary-General
+            </h3>
+            <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
+          </div>
+          <MembersRow members={dsg} />
+        </div>
+
+        {/* ── Senior Advisors ── */}
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="p-2 rounded bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] shrink-0">
+              <Star className="w-5 h-5 stroke-[1.5]" />
+            </div>
+            <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide shrink-0">
+              Senior Advisors
+            </h3>
+            <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
+          </div>
+          <MembersRow members={seniorAdvisors} />
         </div>
 
         {/* Divider */}
