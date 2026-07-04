@@ -8,26 +8,26 @@ import {
 
 /* ─── Data ────────────────────────────────────────────────────────────── */
 const secretariat = [
-  { badge: "SG",  icon: Shield, name: "Omar Sebaey",     title: "Secretary-General"       },
-  { badge: "DSG", icon: Award,  name: "Lea Chaaban",     title: "Deputy Secretary-General" },
-  { badge: "SA",  icon: Star,   name: "Joumana Mohamed", title: "Senior Advisor"           },
-  { badge: "SA",  icon: Star,   name: "Joe Feghaly",     title: "Senior Advisor"           },
+  { badge: "SG",  name: "Omar Sebaey",     title: "Secretary-General"        },
+  { badge: "DSG", name: "Lea Chaaban",     title: "Deputy Secretary-General"  },
+  { badge: "SA",  name: "Joumana Mohamed", title: "Senior Advisor"            },
+  { badge: "SA",  name: "Joe Feghaly",     title: "Senior Advisor"            },
 ];
 
 const departments = [
   {
     name: "CCDA Department", icon: Compass,
     members: [
-      { badge: "Head",    name: "Yousef Siddique", title: "Head of CCDA"    },
-      { badge: "Co-Head", name: "Ayda El Kattan",  title: "Co-Head of CCDA" },
-      { badge: "Co-Head", name: "Malek Bsat",      title: "Co-Head of CCDA" },
+      { badge: "Head",    name: "Yousef Siddique", title: "Head of CCDA"     },
+      { badge: "Co-Head", name: "Ayda El Kattan",  title: "Co-Head of CCDA"  },
+      { badge: "Co-Head", name: "Malek Bsat",      title: "Co-Head of CCDA"  },
     ],
   },
   {
     name: "Media", icon: Eye,
     members: [
       { badge: "Head",    name: "Anya Asim",   title: "Head of Media"    },
-      { badge: "Co-Head", name: "Sarah Firas", title: "Co-Head of Media" },
+      { badge: "Co-Head", name: "Sarah Firas", title: "Co-Head of Media"  },
     ],
   },
   {
@@ -59,16 +59,16 @@ const departments = [
   {
     name: "Volunteers", icon: HeartHandshake,
     members: [
-      { badge: "Head",    name: "Syriena Helali",    title: "Head of Volunteers"    },
-      { badge: "Co-Head", name: "Sulaiman AbuDawood",title: "Co-Head of Volunteers" },
+      { badge: "Head",    name: "Syriena Helali",     title: "Head of Volunteers"    },
+      { badge: "Co-Head", name: "Sulaiman AbuDawood", title: "Co-Head of Volunteers" },
     ],
   },
   {
     name: "Security", icon: Lock,
     members: [
-      { badge: "Head",    name: "Sadeen Abdulaziz",     title: "Head of Security"    },
-      { badge: "Co-Head", name: "Abdulrahman AlBabtain",title: "Co-Head of Security" },
-      { badge: "Co-Head", name: "Sarah Naim",            title: "Co-Head of Security" },
+      { badge: "Head",    name: "Sadeen Abdulaziz",      title: "Head of Security"    },
+      { badge: "Co-Head", name: "Abdulrahman AlBabtain", title: "Co-Head of Security" },
+      { badge: "Co-Head", name: "Sarah Naim",             title: "Co-Head of Security" },
     ],
   },
   {
@@ -98,7 +98,10 @@ const departments = [
 /* ─── Member Card ─────────────────────────────────────────────────────── */
 function MemberCard({ badge, name, title }) {
   return (
-    <div className="relative p-5 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-xl overflow-hidden group hover:border-[#E2C799]/55 transition-colors duration-300 flex flex-col gap-1">
+    <div
+      className="relative p-5 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-xl overflow-hidden hover:border-[#E2C799]/55 transition-colors duration-300 flex flex-col gap-1 shrink-0"
+      style={{ width: "160px" }}
+    >
       {/* Corner accents */}
       <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#E2C799]/30 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#E2C799]/30 pointer-events-none" />
@@ -113,11 +116,37 @@ function MemberCard({ badge, name, title }) {
         {title}
       </span>
 
-      {/* Name — smaller font so long names never overflow */}
-      <h3 className="font-serif text-base font-bold text-white tracking-wide leading-snug break-words hyphens-auto">
+      {/* Name */}
+      <h3 className="font-serif text-sm font-bold text-white tracking-wide leading-snug break-words">
         {name}
       </h3>
     </div>
+  );
+}
+
+/* ─── Members Row — scrollable on mobile, wrapping grid on desktop ─────── */
+function MembersRow({ members }) {
+  return (
+    <>
+      {/* Mobile: horizontal scroll */}
+      <div className="md:hidden overflow-x-auto pb-3">
+        <div className="flex gap-3" style={{ width: "max-content" }}>
+          {members.map((m, i) => (
+            <MemberCard key={i} {...m} />
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop: wrapping grid */}
+      <div
+        className="hidden md:grid gap-4"
+        style={{ gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))" }}
+      >
+        {members.map((m, i) => (
+          <MemberCard key={i} {...m} />
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -137,18 +166,7 @@ function DepartmentRow({ dept }) {
         <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
       </div>
 
-      {/* Grid: auto-fill with 180 px minimum — cards never crush each other */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-          gap: "1rem",
-        }}
-      >
-        {dept.members.map((m, i) => (
-          <MemberCard key={i} {...m} />
-        ))}
-      </div>
+      <MembersRow members={dept.members} />
     </div>
   );
 }
@@ -193,17 +211,7 @@ export default function ExecutiveBoard() {
             <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-              gap: "1rem",
-            }}
-          >
-            {secretariat.map((m, i) => (
-              <MemberCard key={i} badge={m.badge} name={m.name} title={m.title} />
-            ))}
-          </div>
+          <MembersRow members={secretariat} />
         </div>
 
         {/* Divider */}
