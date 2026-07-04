@@ -106,7 +106,7 @@ const departments = [
 /* ─── Member Card ────────────────────────────────────────────────────── */
 function MemberCard({ badge, name, title }) {
   return (
-    <div className="relative p-5 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-xl overflow-hidden group hover:border-[#E2C799]/55 transition-all duration-300 hover:scale-[1.02] flex flex-col justify-center flex-1 min-w-0">
+    <div className="relative p-5 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-xl overflow-hidden group hover:border-[#E2C799]/55 transition-all duration-300 hover:scale-[1.02] flex flex-col justify-center" style={{ minWidth: '200px', maxWidth: '280px', flex: '1 1 200px' }}>
       {/* Corner accents */}
       <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#E2C799]/30" />
       <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#E2C799]/30" />
@@ -117,7 +117,7 @@ function MemberCard({ badge, name, title }) {
       <span className="text-[9px] font-mono text-slate-500 uppercase tracking-widest mb-1">
         {title}
       </span>
-      <h3 className="font-serif text-xl font-bold text-white tracking-wide leading-tight">
+      <h3 className="font-serif text-xl font-bold text-white tracking-wide leading-tight break-words">
         {name}
       </h3>
     </div>
@@ -141,7 +141,7 @@ function DepartmentRow({ dept }) {
       </div>
 
       {/* Members side-by-side */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 items-stretch">
         {dept.members.map((m, i) => (
           <MemberCard key={i} {...m} />
         ))}
