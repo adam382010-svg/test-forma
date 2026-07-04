@@ -102,11 +102,11 @@ const departments = [
 ];
 
 /* ─── Member Card ─────────────────────────────────────────────────────── */
-function MemberCard({ badge, name, title }) {
+function MemberCard({ badge, name, title, stretch }) {
   return (
     <div
-      className="relative p-5 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-xl overflow-hidden hover:border-[#E2C799]/55 transition-colors duration-300 flex flex-col gap-1 shrink-0"
-      style={{ width: "160px" }}
+      className="relative p-5 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-xl overflow-hidden hover:border-[#E2C799]/55 transition-colors duration-300 flex flex-col gap-1"
+      style={stretch ? { width: '100%' } : { width: '160px', flexShrink: 0 }}
     >
       {/* Corner accents */}
       <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#E2C799]/30 pointer-events-none" />
@@ -131,17 +131,27 @@ function MemberCard({ badge, name, title }) {
 }
 
 /* ─── Members Row — scrollable on mobile, wrapping grid on desktop ─────── */
-function MembersRow({ members }) {
+function MembersRow({ members, stretch }) {
   return (
     <>
-      {/* Mobile: horizontal scroll */}
-      <div className="md:hidden overflow-x-auto pb-3">
-        <div className="flex gap-3" style={{ width: "max-content" }}>
+      {/* Mobile */}
+      {stretch ? (
+        /* Stretch mode: cards fill full width side by side */
+        <div className="md:hidden flex gap-3">
           {members.map((m, i) => (
-            <MemberCard key={i} {...m} />
+            <MemberCard key={i} {...m} stretch />
           ))}
         </div>
-      </div>
+      ) : (
+        /* Scroll mode: fixed-width cards, scroll if overflow */
+        <div className="md:hidden overflow-x-auto pb-3">
+          <div className="flex gap-3" style={{ width: 'max-content' }}>
+            {members.map((m, i) => (
+              <MemberCard key={i} {...m} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Desktop: wrapping grid */}
       <div
@@ -166,7 +176,7 @@ function DepartmentRow({ dept }) {
         <div className="p-2 rounded bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] shrink-0">
           <DeptIcon className="w-5 h-5 stroke-[1.5]" />
         </div>
-        <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide shrink-0">
+        <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide">
           {dept.name}
         </h3>
         <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
@@ -211,12 +221,12 @@ export default function ExecutiveBoard() {
             <div className="p-2 rounded bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] shrink-0">
               <Shield className="w-5 h-5 stroke-[1.5]" />
             </div>
-            <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide shrink-0">
+            <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide">
               Secretary-General
             </h3>
             <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
           </div>
-          <MembersRow members={sg} />
+          <MembersRow members={sg} stretch />
         </div>
 
         {/* ── Deputy Secretary-General ── */}
@@ -225,12 +235,12 @@ export default function ExecutiveBoard() {
             <div className="p-2 rounded bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] shrink-0">
               <Award className="w-5 h-5 stroke-[1.5]" />
             </div>
-            <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide shrink-0">
-              Deputy Secretary-General
+            <h3 className="font-serif text-2xl md:text-3xl text-[#E2C799] font-bold tracking-wide leading-tight">
+              Deputy<br />Secretary-General
             </h3>
             <div className="flex-1 h-px bg-gradient-to-r from-[#E2C799]/30 to-transparent" />
           </div>
-          <MembersRow members={dsg} />
+          <MembersRow members={dsg} stretch />
         </div>
 
         {/* ── Senior Advisors ── */}
