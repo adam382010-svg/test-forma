@@ -1,9 +1,60 @@
 "use client";
 
-import React from "react";
-import { Mail, Instagram, BellRing } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Mail, Instagram, ExternalLink, ShieldCheck, Users, Camera, Clock } from "lucide-react";
 
 export default function Applications() {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    const calculateTimeLeft = () => {
+      // Target: October 15, 2026, 6:00 PM Riyadh Time (UTC+3)
+      const targetDate = new Date("2026-10-15T18:00:00+03:00").getTime();
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+
+      return {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    };
+
+    setTimeLeft(calculateTimeLeft());
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const applicationLinks = [
+    {
+      title: "Volunteer Applications",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSfslzkbDMJEpS3FAuN1p2SuAuwRgfDxn1MXu3MYTePDwiEQXw/viewform?usp=publish-editor",
+      icon: Users,
+    },
+    {
+      title: "Security Applications",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLScGEKipBE_y5ZaSDmvhvDAPksAsp9jb4qp2z4sJofFx7Bopkw/viewform?usp=publish-editor",
+      icon: ShieldCheck,
+    },
+    {
+      title: "Press Applications",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSdwdKT5CmWHdWyUnfQPzXTVGjDJHB2P0nr-D5NoHJ25Ox0chg/viewform?usp=publish-editor",
+      icon: Camera,
+    },
+  ];
+
   return (
     <section id="applications" className="relative py-24 bg-[#0B192C] overflow-hidden border-t border-[#E2C799]/10">
       {/* Background blueprint elements */}
@@ -12,95 +63,103 @@ export default function Applications() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <span className="text-xs font-sans tracking-[0.3em] uppercase text-[#E2C799] font-semibold">
             Registration
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl text-white tracking-wide mt-2">
-            Applications
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-white tracking-wide mt-2 font-bold drop-shadow-md">
+            TEAM APPLICATIONS ARE OUT NOW!
           </h2>
+          <p className="font-sans text-slate-300 text-sm md:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
+            Apply now to join the team for FormaMUN 2026. Select your application track below before the deadline.
+          </p>
           <div className="w-16 h-[1px] bg-[#E2C799] mx-auto mt-4 opacity-55"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-5xl mx-auto items-stretch">
+        <div className="max-w-4xl mx-auto flex flex-col items-center">
           
-          {/* Left Side: Information & Notice Ticket */}
-          <div className="lg:col-span-7 flex flex-col justify-between p-8 rounded-lg bg-[#060E1A]/40 border border-slate-800 backdrop-blur-sm shadow-xl">
-            <div>
-              {/* Verbatim Copy */}
-              <p className="font-sans text-slate-300 text-base leading-relaxed mb-8">
-                Application details will be announced soon. Follow our official platforms to receive updates regarding applications, committee allocations, conference announcements, and future opportunities.
-              </p>
+          {/* Countdown Timer Box (Placed Above the Buttons) */}
+          <div className="w-full mb-12 p-6 sm:p-8 rounded-xl bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-[0_0_30px_rgba(226,199,153,0.05)] text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#E2C799]/40"></div>
+            <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#E2C799]/40"></div>
 
-              {/* Interactive notice box / ticket */}
-              <div className="relative p-6 rounded-md bg-[#0A192F] border border-dashed border-[#E2C799]/30 flex items-start space-x-4 shadow-[0_0_15px_rgba(226,199,153,0.02)] overflow-hidden">
-                {/* Decorative circle cuts to look like a ticket */}
-                <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#0B192C] border-r border-[#E2C799]/30"></div>
-                <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-[#0B192C] border-l border-[#E2C799]/30"></div>
-                
-                <div className="p-2 rounded bg-[#E2C799]/5 border border-[#E2C799]/20 text-[#E2C799] ml-2">
-                  <BellRing className="w-5 h-5 animate-pulse" />
-                </div>
-                
-                <div className="flex-1 pr-2">
-                  <span className="font-mono text-[9px] text-[#E2C799]/60 uppercase tracking-widest block mb-1">
-                    Secretariat Notice
-                  </span>
-                  {/* Verbatim Copy */}
-                  <p className="font-sans text-xs italic text-[#E2C799] leading-relaxed">
-                    "When applications are live, direct links to Google Forms will be made available here."
-                  </p>
-                </div>
-              </div>
+            <div className="flex items-center justify-center gap-2 mb-4 text-[#E2C799]">
+              <Clock className="w-4 h-4 animate-pulse" />
+              <span className="font-mono text-xs uppercase tracking-[0.25em] font-semibold">
+                Applications Close: October 15 at 6:00 PM (Riyadh Time)
+              </span>
             </div>
 
-            {/* Social Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
-              {/* Instagram link */}
-              <a
-                href="https://instagram.com/forma_mun"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center space-x-3 px-6 py-3.5 border border-[#E2C799]/30 hover:border-[#E2C799]/70 text-white hover:text-[#E2C799] rounded bg-[#060E1A]/40 transition-all duration-300 font-serif text-sm tracking-widest uppercase hover:scale-[1.02]"
-              >
-                <Instagram className="w-4 h-4 text-[#E2C799]" />
-                <span>@forma_mun</span>
-              </a>
-
-              {/* Email link */}
-              <a
-                href="mailto:formamun26@gmail.com"
-                className="flex-1 inline-flex items-center justify-center space-x-3 px-6 py-3.5 border border-[#E2C799]/30 hover:border-[#E2C799]/70 text-white hover:text-[#E2C799] rounded bg-[#060E1A]/40 transition-all duration-300 font-serif text-sm tracking-widest uppercase hover:scale-[1.02]"
-              >
-                <Mail className="w-4 h-4 text-[#E2C799]" />
-                <span>formamun26@gmail.com</span>
-              </a>
+            <div className="grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto">
+              {[
+                { label: "Days", value: mounted ? timeLeft.days : 0 },
+                { label: "Hours", value: mounted ? timeLeft.hours : 0 },
+                { label: "Minutes", value: mounted ? timeLeft.minutes : 0 },
+                { label: "Seconds", value: mounted ? timeLeft.seconds : 0 },
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center p-3 sm:p-4 rounded-lg bg-[#0A192F]/90 border border-[#E2C799]/15 shadow-inner"
+                >
+                  <span className="font-serif text-2xl sm:text-4xl font-extrabold text-[#E2C799] tracking-tight">
+                    {String(item.value).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-[9px] sm:text-xs uppercase tracking-widest text-slate-400 mt-1">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Side: TBD Card */}
-          <div className="lg:col-span-5 relative p-8 rounded-lg bg-[#060E1A]/70 border border-[#E2C799]/15 backdrop-blur-sm shadow-xl flex flex-col justify-center items-center overflow-hidden min-h-[280px]">
-            {/* Architectural corner details */}
-            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#E2C799]/25"></div>
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#E2C799]/25"></div>
-            
-            <div className="relative z-10 text-center flex flex-col items-center justify-center">
-              <span className="text-xs font-sans tracking-[0.2em] uppercase text-slate-500 mb-3 block">
-                Status
-              </span>
-              <h3 className="font-serif text-xl text-white tracking-wide mb-4">
-                Application Timelines
-              </h3>
-              
-              {/* TBD display */}
-              <div className="px-8 py-6 rounded-md border border-[#E2C799]/30 bg-[#E2C799]/5 text-[#E2C799] font-serif text-4xl font-bold tracking-widest gold-text-glow mb-4">
-                TBD
-              </div>
-              
-              <p className="font-sans text-xs text-slate-400 leading-relaxed max-w-[240px] mx-auto">
-                Opening dates, allocation forms, and delegate registrations are to be announced.
-              </p>
-            </div>
+          {/* Three Application Buttons */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
+            {applicationLinks.map((app, idx) => {
+              const IconComponent = app.icon;
+              return (
+                <a
+                  key={idx}
+                  href={app.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative p-6 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 hover:border-[#E2C799] backdrop-blur-md shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center justify-between min-h-[160px]"
+                >
+                  <div className="p-3 rounded-full bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  
+                  <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#E2C799] transition-colors mb-4">
+                    {app.title}
+                  </h3>
+
+                  <div className="inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#E2C799] font-semibold group-hover:underline">
+                    <span>Apply Now</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Contact & Social Links */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center pt-8 border-t border-slate-800/80">
+            <a
+              href="https://instagram.com/forma_mun"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center space-x-3 px-6 py-3 border border-[#E2C799]/30 hover:border-[#E2C799]/70 text-white hover:text-[#E2C799] rounded bg-[#060E1A]/40 transition-all duration-300 font-serif text-xs tracking-widest uppercase hover:scale-[1.02]"
+            >
+              <Instagram className="w-4 h-4 text-[#E2C799]" />
+              <span>@forma_mun</span>
+            </a>
+
+            <a
+              href="mailto:formamun26@gmail.com"
+              className="inline-flex items-center justify-center space-x-3 px-6 py-3 border border-[#E2C799]/30 hover:border-[#E2C799]/70 text-white hover:text-[#E2C799] rounded bg-[#060E1A]/40 transition-all duration-300 font-serif text-xs tracking-widest uppercase hover:scale-[1.02]"
+            >
+              <Mail className="w-4 h-4 text-[#E2C799]" />
+              <span>formamun26@gmail.com</span>
+            </a>
           </div>
 
         </div>
