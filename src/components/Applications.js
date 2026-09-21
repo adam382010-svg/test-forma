@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Mail, Instagram, ExternalLink, ShieldCheck, Users, Camera, Clock } from "lucide-react";
+import { Mail, Instagram, Clock } from "lucide-react";
 
 export default function Applications() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -41,17 +41,14 @@ export default function Applications() {
     {
       title: "Volunteer Applications",
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfslzkbDMJEpS3FAuN1p2SuAuwRgfDxn1MXu3MYTePDwiEQXw/viewform?usp=publish-editor",
-      icon: Users,
     },
     {
       title: "Security Applications",
       url: "https://docs.google.com/forms/d/e/1FAIpQLScGEKipBE_y5ZaSDmvhvDAPksAsp9jb4qp2z4sJofFx7Bopkw/viewform?usp=publish-editor",
-      icon: ShieldCheck,
     },
     {
       title: "Press Applications",
       url: "https://docs.google.com/forms/d/e/1FAIpQLSdwdKT5CmWHdWyUnfQPzXTVGjDJHB2P0nr-D5NoHJ25Ox0chg/viewform?usp=publish-editor",
-      icon: Camera,
     },
   ];
 
@@ -112,33 +109,26 @@ export default function Applications() {
             </div>
           </div>
 
-          {/* Three Application Buttons */}
+          {/* Three Rectangular Application Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
-            {applicationLinks.map((app, idx) => {
-              const IconComponent = app.icon;
-              return (
-                <a
-                  key={idx}
-                  href={app.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative p-6 rounded-lg bg-[#060E1A]/80 border border-[#E2C799]/25 hover:border-[#E2C799] backdrop-blur-md shadow-lg transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center text-center justify-between min-h-[160px]"
-                >
-                  <div className="p-3 rounded-full bg-[#E2C799]/10 border border-[#E2C799]/20 text-[#E2C799] mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  
-                  <h3 className="font-serif text-lg font-bold text-white group-hover:text-[#E2C799] transition-colors mb-4">
-                    {app.title}
-                  </h3>
+            {applicationLinks.map((app, idx) => (
+              <a
+                key={idx}
+                href={app.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-6 bg-[#060E1A]/90 border border-[#E2C799]/25 hover:border-[#E2C799] shadow-lg transition-all duration-300 flex flex-col justify-between items-center text-center min-h-[170px]"
+              >
+                <h3 className="font-serif text-xl font-bold text-white group-hover:text-[#E2C799] transition-colors mb-6">
+                  {app.title}
+                </h3>
 
-                  <div className="inline-flex items-center gap-2 text-xs font-mono tracking-wider uppercase text-[#E2C799] font-semibold group-hover:underline">
-                    <span>Apply Now</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </div>
-                </a>
-              );
-            })}
+                {/* Rectangular APPLY NOW button without any symbols/icons */}
+                <div className="w-full py-3 px-4 bg-[#E2C799]/10 border border-[#E2C799]/40 group-hover:bg-[#E2C799] group-hover:text-[#060E1A] text-[#E2C799] font-serif text-sm tracking-widest font-bold uppercase transition-all duration-300 text-center">
+                  APPLY NOW
+                </div>
+              </a>
+            ))}
           </div>
 
           {/* Contact & Social Links */}

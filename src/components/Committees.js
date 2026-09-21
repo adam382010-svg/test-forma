@@ -128,14 +128,14 @@ export default function Committees() {
         </div>
 
         {/* 12 Architectural Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
           {committees.map((committee) => (
             <div
               key={committee.id}
-              className="relative p-6 rounded-lg bg-[#060E1A]/70 border border-[#E2C799]/15 backdrop-blur-sm shadow-lg overflow-hidden group hover:border-[#E2C799]/40 hover:shadow-[0_0_20px_rgba(226,199,153,0.06)] transition-all duration-300 transform hover:scale-[1.02] flex flex-col justify-between min-h-[340px]"
+              className="relative p-6 rounded-lg bg-[#060E1A]/70 border border-[#E2C799]/15 backdrop-blur-sm shadow-lg overflow-hidden group hover:border-[#E2C799]/40 hover:shadow-[0_0_20px_rgba(226,199,153,0.06)] transition-all duration-300 transform hover:scale-[1.02] flex flex-col justify-between"
             >
-              {/* Giant background index number in gold outline */}
-              <div className="absolute -right-4 -bottom-6 font-serif text-8xl font-black text-[#E2C799]/5 select-none pointer-events-none group-hover:text-[#E2C799]/10 transition-colors duration-300">
+              {/* Giant background index number - shifted inside so it is NOT cropped */}
+              <div className="absolute right-3 bottom-2 font-serif text-7xl sm:text-8xl font-black text-[#E2C799]/5 select-none pointer-events-none group-hover:text-[#E2C799]/10 transition-colors duration-300">
                 {committee.id.toString().padStart(2, "0")}
               </div>
 
@@ -153,7 +153,7 @@ export default function Committees() {
                   <Layers className="w-3.5 h-3.5 text-[#E2C799]/40 group-hover:text-[#E2C799] transition-colors duration-300" />
                 </div>
 
-                {/* Title (Doubled font size) */}
+                {/* Title */}
                 <h3 className="font-serif text-3xl font-bold text-white tracking-wide mb-3 group-hover:text-[#E2C799] transition-colors duration-300 leading-tight">
                   {committee.name}
                 </h3>
@@ -163,32 +163,37 @@ export default function Committees() {
                   Topic: {committee.topic}
                 </p>
 
-                {/* Committee Image */}
-                <div className="relative w-full h-48 mt-auto rounded overflow-hidden border border-[#E2C799]/20 group-hover:border-[#E2C799]/40 transition-colors duration-300 bg-[#060E1A]/50">
-                  {committee.image ? (
-                    <Image
-                      src={committee.image}
-                      alt={`${committee.name} Topic Image`}
-                      fill
-                      className={`transition-transform duration-500 group-hover:scale-105 ${
-                        committee.fitContain ? "object-contain p-2" : "object-cover"
-                      }`}
-                    />
+                {/* Committee Image Area */}
+                <div className="mt-auto pt-2">
+                  {committee.fitContain ? (
+                    <div className="relative w-full h-48 rounded overflow-hidden border border-[#E2C799]/20 group-hover:border-[#E2C799]/40 transition-colors duration-300 bg-[#060E1A]/50">
+                      <Image
+                        src={committee.image}
+                        alt={`${committee.name} Topic Image`}
+                        fill
+                        className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <Layers className="w-8 h-8 text-[#E2C799]/20" />
+                    <div className="w-full rounded overflow-hidden border border-[#E2C799]/20 group-hover:border-[#E2C799]/40 transition-colors duration-300 bg-[#060E1A]">
+                      <img
+                        src={committee.image}
+                        alt={`${committee.name} Topic Image`}
+                        className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
                   )}
                 </div>
               </div>
 
-              {/* Footer / Chairs Badge (Doubled font size) */}
-              <div className="mt-5 pt-3 border-t border-slate-900/90 flex flex-col gap-1">
-                <div className="px-3 py-2 rounded bg-[#E2C799]/5 border border-[#E2C799]/15">
-                  <span className="font-mono text-xs sm:text-sm text-[#E2C799] tracking-wider uppercase font-semibold block">
-                    Chairs: {committee.chairs.join(" & ")}
-                  </span>
-                </div>
+              {/* Footer / Chairs Badge (Font size doubled) */}
+              <div className="mt-6 pt-4 border-t border-slate-900/90 flex flex-col gap-1 relative z-10">
+                <span className="font-mono text-xs uppercase tracking-widest text-slate-400 font-medium">
+                  Chairs:
+                </span>
+                <span className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-[#E2C799] tracking-wide leading-snug">
+                  {committee.chairs.join(" & ")}
+                </span>
               </div>
             </div>
           ))}
