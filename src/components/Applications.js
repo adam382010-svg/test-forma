@@ -1,42 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Mail, Instagram, Clock } from "lucide-react";
+import React from "react";
+import { Mail, Instagram } from "lucide-react";
 
 export default function Applications() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-
-    const calculateTimeLeft = () => {
-      // Target: October 15, 2026, 6:00 PM Riyadh Time (UTC+3)
-      const targetDate = new Date("2026-10-15T18:00:00+03:00").getTime();
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference <= 0) {
-        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-      }
-
-      return {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    };
-
-    setTimeLeft(calculateTimeLeft());
-
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
   const applicationLinks = [
     {
       title: "Volunteer Applications",
@@ -68,47 +35,13 @@ export default function Applications() {
             TEAM APPLICATIONS ARE OUT NOW!
           </h2>
           <p className="font-sans text-slate-300 text-sm md:text-base mt-4 max-w-2xl mx-auto leading-relaxed">
-            Apply now to join the team for FormaMUN 2026. Select your application track below before the deadline.
+            Apply now to join the team for FormaMUN 2026. Select your application track below.
           </p>
           <div className="w-16 h-[1px] bg-[#E2C799] mx-auto mt-4 opacity-55"></div>
         </div>
 
         <div className="max-w-4xl mx-auto flex flex-col items-center">
           
-          {/* Countdown Timer Box (Placed Above the Buttons) */}
-          <div className="w-full mb-12 p-6 sm:p-8 rounded-xl bg-[#060E1A]/80 border border-[#E2C799]/25 backdrop-blur-md shadow-[0_0_30px_rgba(226,199,153,0.05)] text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#E2C799]/40"></div>
-            <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#E2C799]/40"></div>
-
-            <div className="flex items-center justify-center gap-2 mb-4 text-[#E2C799]">
-              <Clock className="w-4 h-4 animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-[0.25em] font-semibold">
-                Applications Close: October 15 at 6:00 PM (AST)
-              </span>
-            </div>
-
-            <div className="grid grid-cols-4 gap-3 sm:gap-6 max-w-xl mx-auto">
-              {[
-                { label: "Days", value: mounted ? timeLeft.days : 0 },
-                { label: "Hours", value: mounted ? timeLeft.hours : 0 },
-                { label: "Minutes", value: mounted ? timeLeft.minutes : 0 },
-                { label: "Seconds", value: mounted ? timeLeft.seconds : 0 },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center p-3 sm:p-4 rounded-lg bg-[#0A192F]/90 border border-[#E2C799]/15 shadow-inner"
-                >
-                  <span className="font-serif text-2xl sm:text-4xl font-extrabold text-[#E2C799] tracking-tight">
-                    {String(item.value).padStart(2, "0")}
-                  </span>
-                  <span className="font-mono text-[9px] sm:text-xs uppercase tracking-widest text-slate-400 mt-1">
-                    {item.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Three Rectangular Application Buttons */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-12">
             {applicationLinks.map((app, idx) => (
