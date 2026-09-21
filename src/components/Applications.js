@@ -83,7 +83,7 @@ export default function Applications() {
             <div className="flex items-center justify-center gap-2 mb-4 text-[#E2C799]">
               <Clock className="w-4 h-4 animate-pulse" />
               <span className="font-mono text-xs uppercase tracking-[0.25em] font-semibold">
-                Applications Close: October 15 at 6:00 PM (Riyadh Time)
+                Applications Close: October 15 at 6:00 PM (AST)
               </span>
             </div>
 

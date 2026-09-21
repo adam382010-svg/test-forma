@@ -71,16 +71,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: Register Button */}
-        <div className="hidden md:block">
-          <button
-            disabled
-            className="px-6 py-2.5 border border-[#E2C799]/40 text-[#E2C799] rounded-md font-serif text-sm tracking-widest uppercase bg-transparent opacity-60 cursor-not-allowed hover:border-[#E2C799]/80 transition-all duration-300 shadow-[0_0_10px_rgba(226,199,153,0.03)]"
-          >
-            Register (TBD)
-          </button>
-        </div>
-
         {/* Hamburger Mobile Menu Toggle */}
         <div className="md:hidden">
           <button
@@ -110,12 +100,6 @@ export default function Navbar() {
               {link.name}
             </a>
           ))}
-          <button
-            disabled
-            className="w-full mt-4 px-6 py-3 border border-[#E2C799]/40 text-[#E2C799] rounded-md font-serif text-sm tracking-widest uppercase bg-transparent opacity-50 cursor-not-allowed text-center"
-          >
-            Register (TBD)
-          </button>
         </div>
       </div>
     </nav>

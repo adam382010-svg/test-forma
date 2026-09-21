@@ -110,7 +110,7 @@ export default function Hero() {
               href="#applications"
               className="inline-flex items-center justify-center px-8 py-4 border border-[#E2C799]/40 text-[#E2C799] bg-[#060E1A]/35 hover:bg-[#E2C799]/5 font-serif font-semibold text-sm tracking-widest uppercase rounded hover:border-[#E2C799]/85 transition-all duration-300 transform hover:scale-[1.02]"
             >
-              Applications Coming Soon
+              Apply Now
             </a>
           </div>
         </div>

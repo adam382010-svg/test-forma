@@ -134,10 +134,6 @@ export default function Committees() {
               key={committee.id}
               className="relative p-6 rounded-lg bg-[#060E1A]/70 border border-[#E2C799]/15 backdrop-blur-sm shadow-lg overflow-hidden group hover:border-[#E2C799]/40 hover:shadow-[0_0_20px_rgba(226,199,153,0.06)] transition-all duration-300 transform hover:scale-[1.02] flex flex-col justify-between"
             >
-              {/* Giant background index number - shifted inside so it is NOT cropped */}
-              <div className="absolute right-3 bottom-2 font-serif text-7xl sm:text-8xl font-black text-[#E2C799]/5 select-none pointer-events-none group-hover:text-[#E2C799]/10 transition-colors duration-300">
-                {committee.id.toString().padStart(2, "0")}
-              </div>
 
               {/* Decorative engineering/blueprint alignment lines */}
               <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#E2C799]/20"></div>
