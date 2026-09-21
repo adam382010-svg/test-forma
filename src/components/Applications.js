@@ -58,13 +58,13 @@ export default function Applications() {
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               {/* Instagram link */}
               <a
-                href="https://instagram.com/formamun"
+                href="https://instagram.com/forma_mun"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center space-x-3 px-6 py-3.5 border border-[#E2C799]/30 hover:border-[#E2C799]/70 text-white hover:text-[#E2C799] rounded bg-[#060E1A]/40 transition-all duration-300 font-serif text-sm tracking-widest uppercase hover:scale-[1.02]"
               >
                 <Instagram className="w-4 h-4 text-[#E2C799]" />
-                <span>@formamun</span>
+                <span>@forma_mun</span>
               </a>
 
               {/* Email link */}

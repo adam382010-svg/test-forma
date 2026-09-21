@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Awards from "@/components/Awards";
 import Mission from "@/components/Mission";
 import Experience from "@/components/Experience";
 import Committees from "@/components/Committees";
@@ -23,6 +24,9 @@ export default function Home() {
 
         {/* About Section */}
         <About />
+
+        {/* Awards & Prize Fund Section */}
+        <Awards />
 
         {/* Mission, Vision, and Benefits Section */}
         <Mission />

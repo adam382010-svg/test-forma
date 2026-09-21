@@ -66,13 +66,13 @@ export default function Footer() {
             <ul className="space-y-3 text-xs font-sans">
               <li>
                 <a
-                  href="https://instagram.com/formamun"
+                  href="https://instagram.com/forma_mun"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 text-slate-400 hover:text-[#E2C799] transition-colors duration-300"
                 >
                   <Instagram className="w-3.5 h-3.5" />
-                  <span>@formamun</span>
+                  <span>@forma_mun</span>
                 </a>
               </li>
               <li>
@@ -94,12 +94,12 @@ export default function Footer() {
             DESIGNED & DEVELOPED BY
           </span>
           <p className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-widest text-[#E2C799] gold-text-glow font-bold uppercase transition-transform duration-500 hover:scale-[1.02] mb-6">
-            Made By Adam Khudai
+            Made By Adam Khudair
           </p>
           
           {/* 4x Larger Contact Creator Button */}
           <a
-            href="https://www.instagram.com/adam_ahmad_khudair/"
+            href="https://www.instagram.com/adam__khudair/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center space-x-2 text-[#E2C799] hover:text-[#F3E5AB] border-2 border-[#E2C799]/40 hover:border-[#E2C799] px-8 py-3.5 rounded-md transition-all duration-300 bg-[#E2C799]/5 hover:bg-[#E2C799]/10 font-serif text-xs sm:text-sm tracking-widest uppercase font-bold shadow-[0_0_30px_rgba(226,199,153,0.05)] hover:shadow-[0_0_40px_rgba(226,199,153,0.15)] transform hover:scale-[1.03]"

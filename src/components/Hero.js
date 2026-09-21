@@ -51,7 +51,7 @@ export default function Hero() {
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-[#E2C799]/20 bg-[#E2C799]/5 mb-6 backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E2C799] animate-pulse"></span>
             <span className="text-xs font-sans tracking-[0.2em] uppercase text-[#E2C799]">
-              Inaugural Edition
+              In progress
             </span>
           </div>
 
@@ -90,7 +90,7 @@ export default function Hero() {
               </div>
               <div>
                 <p className="text-[10px] tracking-wider uppercase text-slate-500">Date</p>
-                <p className="text-sm font-semibold text-white tracking-wide">To Be Announced</p>
+                <p className="text-sm font-semibold text-white tracking-wide">7-9/1/2027</p>
               </div>
             </div>
           </div>

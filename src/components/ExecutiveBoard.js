@@ -25,7 +25,6 @@ const departments = [
     name: "CCDA Department", icon: Compass,
     members: [
       { badge: "Head",    name: "Yousef Siddique", title: "Head of CCDA"     },
-      { badge: "Co-Head", name: "Ayda El Kattan",  title: "Co-Head of CCDA"  },
       { badge: "Co-Head", name: "Malek Bsat",      title: "Co-Head of CCDA"  },
     ],
   },
@@ -72,8 +71,7 @@ const departments = [
   {
     name: "Security", icon: Lock,
     members: [
-      { badge: "Head",    name: "Sadeen Abdulaziz",      title: "Head of Security"    },
-      { badge: "Co-Head", name: "Abdulrahman AlBabtain", title: "Co-Head of Security" },
+      { badge: "Head",    name: "Ribal AlHawsawi",      title: "Head of Security"    },
       { badge: "Co-Head", name: "Sarah Naim",             title: "Co-Head of Security" },
     ],
   },
@@ -96,7 +94,7 @@ const departments = [
     name: "Marketing", icon: Megaphone,
     members: [
       { badge: "Head",    name: "Rudina Shabana",   title: "Head of Marketing"    },
-      { badge: "Co-Head", name: "Serien Elframawy", title: "Co-Head of Marketing" },
+      { badge: "Co-Head", name: "Lujain Hijazi", title: "Co-Head of Marketing" },
     ],
   },
 ];
