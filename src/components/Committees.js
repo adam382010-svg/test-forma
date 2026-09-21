@@ -182,14 +182,21 @@ export default function Committees() {
                 </div>
               </div>
 
-              {/* Footer / Chairs Badge (Font size doubled) */}
-              <div className="mt-6 pt-4 border-t border-slate-900/90 flex flex-col gap-1 relative z-10">
+              {/* Footer / Chairs Section */}
+              <div className="mt-6 pt-4 border-t border-slate-900/90 flex flex-col gap-1.5 relative z-10">
                 <span className="font-mono text-xs uppercase tracking-widest text-slate-400 font-medium">
                   Chairs:
                 </span>
-                <span className="font-serif text-lg sm:text-xl md:text-2xl font-bold text-[#E2C799] tracking-wide leading-snug">
-                  {committee.chairs.join(" & ")}
-                </span>
+                <div className="flex flex-col gap-1">
+                  {committee.chairs.map((chair, idx) => (
+                    <span
+                      key={idx}
+                      className="font-serif text-lg sm:text-xl font-bold text-[#E2C799] tracking-wide leading-snug block"
+                    >
+                      {chair}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
