@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Layers } from "lucide-react";
 import Image from "next/image";
 
@@ -106,6 +106,12 @@ const committees = [
 ];
 
 export default function Committees() {
+  const [ahmedClicks, setAhmedClicks] = useState(0);
+
+  const handleAhmedClick = () => {
+    setAhmedClicks((prev) => prev + 1);
+  };
+
   return (
     <section id="committees" className="relative py-24 bg-[#0A192F] overflow-hidden border-t border-[#E2C799]/10">
       {/* Background blueprint grids */}
@@ -134,7 +140,6 @@ export default function Committees() {
               key={committee.id}
               className="relative p-6 rounded-lg bg-[#060E1A]/70 border border-[#E2C799]/15 backdrop-blur-sm shadow-lg overflow-hidden group hover:border-[#E2C799]/40 hover:shadow-[0_0_20px_rgba(226,199,153,0.06)] transition-all duration-300 transform hover:scale-[1.02] flex flex-col justify-between"
             >
-
               {/* Decorative engineering/blueprint alignment lines */}
               <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-[#E2C799]/20"></div>
               <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-[#E2C799]/20"></div>
@@ -188,14 +193,22 @@ export default function Committees() {
                   Chairs:
                 </span>
                 <div className="flex flex-col gap-1">
-                  {committee.chairs.map((chair, idx) => (
-                    <span
-                      key={idx}
-                      className="font-serif text-lg sm:text-xl font-bold text-[#E2C799] tracking-wide leading-snug block"
-                    >
-                      {chair}
-                    </span>
-                  ))}
+                  {committee.chairs.map((chair, idx) => {
+                    const isAhmed = chair === "Ahmed Idris";
+                    const displayName = isAhmed && ahmedClicks >= 3 ? "AHMED DIDDYS" : chair;
+
+                    return (
+                      <span
+                        key={idx}
+                        onClick={isAhmed ? handleAhmedClick : undefined}
+                        className={`font-serif text-lg sm:text-xl font-bold text-[#E2C799] tracking-wide leading-snug block ${
+                          isAhmed ? "cursor-pointer select-none" : ""
+                        }`}
+                      >
+                        {displayName}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </div>
